@@ -1,11 +1,3 @@
-#      |
-#      |
-# ----Jesus----
-#      |
-#      |
-#      |
-#      |
-
 import sys, os, psutil, gc, time, subprocess
 import pyqtgraph as pg
 from PyQt6.QtWidgets import *
@@ -225,4 +217,5 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = NanoDash();
     window.show()
+
     sys.exit(app.exec())

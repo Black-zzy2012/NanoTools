@@ -28,9 +28,9 @@ class WorkThread(QThread):
             if self.t == "BG":
                 from rembg import remove, new_session
                 os.environ["U2NET_HOME"] = get_resource_path("models")
-                self.progress.emit("AI: 1/3 (Loading/加载)")
+                self.progress.emit("AI: 1/3 (Loading/加载中)")
                 session = new_session("u2net")
-                self.progress.emit("AI: 2/3 (Computing/处理)")
+                self.progress.emit("AI: 2/3 (Computing/处理中)")
                 with open(self.p, "rb") as i:
                     res = remove(i.read(), session=session)
                 out = self.p.rsplit(".", 1)[0] + "_nobg.png"
@@ -190,11 +190,11 @@ class NanoDash(QMainWindow):
         if p: self.execute_task("BG", p)
 
     def start_pdf(self):
-        p, _ = QFileDialog.getOpenFileName(self, "Select PDF/选择PDF");
+        p, _ = QFileDialog.getOpenFileName(self, "Select PDF/请选择PDF");
         if p: self.execute_task("PDF", p)
 
     def start_gif(self):
-        p, _ = QFileDialog.getOpenFileName(self, "Select Video/选择视频")
+        p, _ = QFileDialog.getOpenFileName(self, "Select Video/请选择视频")
         if p:
             sec, ok = QInputDialog.getInt(self, "GIF Set/设置", "Duration/时长(1-10s):", 3, 1, 10)
             if ok: self.execute_task("GIF", p, sec)
@@ -219,3 +219,4 @@ if __name__ == "__main__":
     window.show()
 
     sys.exit(app.exec())
+
